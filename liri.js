@@ -9,7 +9,7 @@ appPhrase = ("my-tweet", "spotify-this-song", "movie-this", "do-what-it-says");
 
 
 var appPhrase = process.argv[2];
-var name = process.argv[3];
+var name1 = process.argv[3];
 
 
 var request = require('request');
@@ -42,16 +42,10 @@ if (process.argv[2]="my-tweets") {
 // Run Spotify Function
 
 if (process.argv[2]="spotify-this-song") {
-	function spotifyThisSong() {
+	
 
-		fs.readFile('random.txt', 'utf8', function(error, rdData) {
-    	var sampleTextArr = rdData.split(',');
-
-    	
-
-}) 
-}
-		spotifyThisSong(sampleTextArr[1]);
+		
+		spotifyThisSong(name1);
 
 }
 
@@ -59,18 +53,22 @@ if (process.argv[2]="spotify-this-song") {
 // Run Spotify Function
 
 if (process.argv[2]="movie-this") {
-	function movieThis() {
 
-		fs.readFile('random.txt', 'utf8', function(error, rdData) {
-    	var sampleTextArr = rdData.split(',');
 
-    	
-
-})
-}
-		movieThis(sampleTextArr[1]);
+		
+		movieThis(name1);
 
 }
+
+
+// Run DoWhatItSays Function
+
+if (process.argv[2]="do-what-it-says") {
+   
+        doWhatItSays();
+
+}
+
 
 
 
@@ -134,6 +132,70 @@ function spotifyThisSong(value) {
         }
     });
 } 
+
+
+// doWhatItSays; run one of the apps  
+
+function doWhatItSays() {
+    
+    fs.readFile('random.txt', 'utf8', function(error, rdData) {
+        var sampleTextArr = rdData.split(',');
+        switch (sampleTextArr[0]) {
+            case 'my-tweets':
+                myTweets();
+                break;
+            case 'movie-this':
+                movieThis(sampleTextArr[1]);
+                break;
+            case 'spotify-this-song':
+                spotifyThisSong(sampleTextArr[1]);
+                break;
+            default:
+                console.log(error);
+        }
+    });
+} 
+
+
+// // Run Spotify Function
+
+// if (process.argv[2]="spotify-this-song") {
+    
+
+//         fs.readFile('random.txt', 'utf8', function(error, rdData) {
+//         var sampleTextArr = rdData.split(',');
+
+        
+
+// }) 
+//         spotifyThisSong(sampleTextArr[1]);
+
+// }
+
+
+// // Run Spotify Function
+
+// if (process.argv[2]="movie-this") {
+
+
+//         fs.readFile('random.txt', 'utf8', function(error, rdData) {
+//         var sampleTextArr = rdData.split(',');
+
+        
+
+// })
+//         movieThis(sampleTextArr[1]);
+
+// }
+
+
+// // Run DoWhatItSays Function
+
+// if (process.argv[2]="do-what-it-says") {
+   
+//         doWhatItSays(sampleTextArr[1]);
+
+// }
 
 
 
